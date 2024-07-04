@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tempus",
-    "slug": "tempus",
+    "name": "tempus - Pomodoro Timer",
+    "slug": "tempusPomodoroTimer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "sk.creatz.tempus",
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -22,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": ["expo-build-properties"],
+    "extra": {
+      "eas": {
+        "projectId": "b2e52725-f68d-44d9-a215-58f5ada94b60"
+      }
     }
   }
 }
