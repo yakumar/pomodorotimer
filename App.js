@@ -6,6 +6,7 @@ import {
   useWindowDimensions,
   Pressable,
   Vibration,
+  Button
 } from "react-native";
 import moment from "moment";
 
@@ -15,6 +16,16 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useState, useEffect, useRef } from "react";
 
 import { colors, font } from "./theme";
+
+import { Canvas, rect, rrect, DiffRect, Rect, Circle, Paint, Group} from "@shopify/react-native-skia";
+import  { GestureDetector, Gesture, GestureHandlerRootView} from "react-native-gesture-handler";
+
+import Animated, {useSharedValue, useAnimatedStyle, withSpring,} from 'react-native-reanimated';
+
+
+const testWidth = 256;
+const testHeight = 256;
+////***** */
 
 export default function App() {
   const { height, width } = useWindowDimensions();
@@ -98,6 +109,8 @@ export default function App() {
       };
     }
   }, [timerRunning]);
+
+
 
   useEffect(() => {
     let newSeconds = breakMins * 60;
@@ -211,10 +224,23 @@ export default function App() {
   //   }, 1000);
   // };
 
+  const testR = testWidth / 10;
+
+
+ 
   return (
+    <GestureHandlerRootView>
     <SafeAreaView style={[styles.container]}>
+
+
+
+    
+
+
+
       <View
         style={[
+          
           styles.upperBar,
           { width: width * 0.9, marginTop: height * 0.1 },
         ]}
@@ -226,6 +252,31 @@ export default function App() {
           <MaterialIcons name="music-note" size={24} color={colors.button} />
         </Pressable>
       </View>
+
+ 
+      
+      <Canvas style={{width, height, flex:2}}>
+
+
+
+          <Group style="stroke" strokeWidth={20} >
+
+            <Circle cx={width/2} cy={3 * testR} r={2*testR}/>
+
+
+          </Group>
+
+
+
+
+      </Canvas>
+
+ 
+      
+     
+
+      
+
       <View style={styles.middleBar}>
         <Text
           style={[{ fontSize: 50, fontWeight: 900, color: colors.button1 }]}
@@ -322,7 +373,12 @@ export default function App() {
           </Pressable>
         )}
       </View>
+      
+
+
+     
     </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -377,6 +433,23 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 6,
     textAlign: "center",
   },
+  ball: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: 'blue',
+    alignSelf: 'center',
+  },
+  box: {
+    height: 60,
+    width: 40,
+    backgroundColor: 'red',
+    borderRadius: 20,
+    marginVertical: 10,
+  },
+  canvas:{
+    backgroundColor:"red"
+  }
 });
 
 // vibrate = () => {
